@@ -1,0 +1,18 @@
+# bitbucket-pipelines.yml
+image: atlassian/default-image:3
+
+pipelines:
+  default:
+    - step:
+        name: Deploy to EC2
+        script:
+          - echo "TEST KEY:"
+          - echo "$EC2_SSH_KEY" | grep 'PRIVATE KEY' || echo "Empty variable"
+          - echo "$EC2_SSH_KEY" | head -n 5
+          - mkdir -p ~/.ssh
+          - echo "$EC2_SSH_KEY" | base64 -d > ~/.ssh/id_ed25519
+          - chmod 600 ~/.ssh/id_ed25519
+          - ssh-keyscan -H 13.53.133.209 >> ~/.ssh/known_hosts
+          - git config --global user.email "donatorusso.uk@gmail.com"
+          - git config --global user.name "Donato"
+          - ssh -i ~/.ssh/id_ed25519 ubuntu@13.53.133.209 "cd /var/www/laravel-app && git init && (git remote get-url origin || git remote add origin git@bitbucket.org:donrusso/laravel-test.git) && git fetch origin && git reset --hard origin/main && git clean -fd && git checkout -B main origin/main"

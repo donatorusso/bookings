@@ -1,0 +1,53 @@
+services:
+  app:
+    build:
+      context: .
+    container_name: laravel_app
+    working_dir: /var/www/html
+    volumes:
+      - ./booking_app:/var/www/html
+    ports:
+      - "8000:8000"
+    command: php artisan serve --host=0.0.0.0 --port=8000
+    depends_on:
+      - mysql
+
+  node:
+    image: node:20
+    container_name: node_build
+    working_dir: /var/www/html
+    volumes:
+      - ./booking_app:/var/www/html
+    command: sh -c "tail -f /dev/null"
+    user: "1000:1000"
+
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+    restart: unless-stopped
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: laravel
+      MYSQL_ROOT_PASSWORD: <DB_ROOT_PASSWORD>
+      MYSQL_USER: <DB_USER>
+      MYSQL_PASSWORD: <DB_USER_PASSWORD>
+    command: --default-authentication-plugin=mysql_native_password --ssl=0
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  nginx:
+    image: nginx:alpine
+    container_name: laravel_nginx
+    ports:
+      - "443:443"
+      - "80:80"
+    volumes:
+      - ./nginx/bookings.conf:/etc/nginx/conf.d/bookings.conf:ro
+      - ./nginx/ssl:/etc/nginx/ssl:ro
+      - ./booking_app/public:/var/www/html/public:ro
+    depends_on:
+      - app
+
+volumes:
+  mysql_data:

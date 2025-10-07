@@ -1,0 +1,113 @@
+# --------------------------------------
+# OS / Editor / IDE
+# --------------------------------------
+.DS_Store
+Thumbs.db
+*.log
+*.swp
+*.swo
+*.tmp
+*.bak
+*.orig
+*.seed
+*.pid
+*.cover
+*.cache
+*.lock
+*.diff
+.idea/
+.vscode/
+nbproject/
+.env.local
+.env.backup
+
+# --------------------------------------
+# Laravel core
+# --------------------------------------
+/vendor/
+/node_modules/
+/public/storage
+/storage/*.key
+/storage/debugbar
+/storage/framework/cache/*
+/storage/framework/sessions/*
+/storage/framework/views/*
+/storage/logs/*
+/bootstrap/cache/*
+/.env
+/.env.*
+!.env.example
+!.env.testing
+
+# --------------------------------------
+# React / Node
+# --------------------------------------
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.tsbuildinfo
+
+# React build output
+/public/build/
+/public/dist/
+/dist/
+/build/
+/public/static/
+/public/manifest.json
+
+# Generated source maps
+/public/js/*.map
+/public/css/*.map
+*.map
+
+# --------------------------------------
+# Laravel Mix (legacy builds)
+# --------------------------------------
+/public/hot
+/public/mix-manifest.json
+
+# --------------------------------------
+# PHPUnit / Pest / Code Coverage
+# --------------------------------------
+.phpunit.result.cache
+coverage/
+tests/_output/
+.phpunit.cache/
+
+# --------------------------------------
+# Docker / Dev Environment
+# --------------------------------------
+docker-compose.override.yml
+docker-compose.local.yml
+docker-compose.dev.yml
+/.docker/
+/nginx/ssl/
+/*.pid
+
+# --------------------------------------
+# Logs / Cache / Temporary files
+# --------------------------------------
+*.log
+*.cache
+*.tmp
+*.bak
+*.pid
+
+# --------------------------------------
+# Database / Cache files
+# --------------------------------------
+*.sqlite
+/database/*.sqlite
+
+# --------------------------------------
+# Miscellaneous Laravel helper files
+# --------------------------------------
+/storage/testing
+/.phpstorm.meta.php
+/_ide_helper.php
+/_ide_helper_models.php
+/_ide_helper*.php
+/.php-cs-fixer.cache
+/.phpstan/
