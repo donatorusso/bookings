@@ -72,8 +72,9 @@ newgrp docker
     ├── public/
     ├── tests/
     │   └── Feature/
-    │       ├── BookingTest.php
-    │       └── UserOverlapTest.php
+    │       ├── CreateBookingTest.php
+	│       ├── PreventOverlappingBookingTest
+    │       └── RetrieveWeeklyBookingsTest.php
     ├── .env.testing
     └── (Laravel source)
 ```
